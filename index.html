@@ -2,7 +2,7 @@
 <html lang="es">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Ecohousing · Laureles, Medellín</title>
 <meta name="description" content="Ecohousing: alojamiento de lujo con anfitrión presente en Laureles–Estadio, Medellín. Solicita tu reserva.">
 <style>
@@ -364,6 +364,93 @@ body>footer .logo-xl{letter-spacing:.1em;font-size:clamp(40px,6vw,76px)}
 @media(max-width:760px){.host{padding:96px 0 90px}.host-card{grid-template-columns:1fr;gap:28px;padding:32px 22px;text-align:center;justify-items:center}.host-stats{display:grid;grid-template-columns:1fr 1fr;width:100%}.host-stats li{margin:0;padding:18px 14px;border-right:0;border-bottom:1px solid rgba(47,74,63,.16);text-align:left}.host-stats li:nth-child(odd){border-right:1px solid rgba(47,74,63,.16)}.host-stats li:last-child{border-right:0}}
 /* modal: centrado, claro y aireado */
 :root{--bk-title-w:300}
+
+/* ===== Ajustes móvil / tablet (iOS Safari, Chrome, Android) ===== */
+html{overflow-x:hidden;-webkit-tap-highlight-color:transparent}
+body{overflow-x:hidden;overflow-x:clip;min-width:0}
+/* CAUSA RAÍZ del zoom-out y scroll horizontal: .sr (absolute) dentro del carrusel escapaba del overflow */
+.exp-track,.xcard{position:relative}
+.sr{position:absolute;left:0;top:0;clip:rect(0 0 0 0);clip-path:inset(50%)}
+.exp-track{max-width:100%;-webkit-overflow-scrolling:touch;overscroll-behavior-x:contain}
+/* fallbacks para Safari/iOS antiguos (inset, svh/dvh, backdrop-filter) */
+.hdr{top:0;left:0;right:0}
+.hdr.solid{-webkit-backdrop-filter:blur(6px)}
+.hero{min-height:100vh;min-height:100svh}
+.hero-slides,.hero-bg,.hero::after{top:0;left:0;right:0;bottom:0}
+.bk,.bk-scrim,.gal-lb{top:0;left:0;right:0;bottom:0}
+.bk-panel{width:min(760px,calc(100% - 24px));max-height:calc(100vh - 24px);max-height:calc(100dvh - 24px)}
+.bk-body{-webkit-overflow-scrolling:touch;overscroll-behavior:contain}
+.gal-lb img{max-height:80vh;max-height:80dvh}
+button,.btn,a{touch-action:manipulation}
+.hero-bg{will-change:transform}
+img,svg,iframe,video{max-width:100%}
+.loc-card iframe{display:block}
+.hdr .wrap,.wrap{max-width:100%}
+
+/* Barra fija "Solicitar reserva" (solo móvil) */
+.bk-sticky{display:none}
+@media (max-width:480px){.bk-sticky{display:block}}
+@media (max-width:760px){
+  .wa-float span{display:none}
+  .bk-sticky{position:fixed;z-index:55;left:12px;right:78px;bottom:12px;bottom:calc(12px + env(safe-area-inset-bottom,0px));left:calc(12px + env(safe-area-inset-left,0px))}
+  .bk-sticky .btn{width:100%;padding:17px 16px;font-size:12px;letter-spacing:.16em;box-shadow:0 10px 26px rgba(20,30,25,.28);white-space:nowrap}
+  html.bk-lock .bk-sticky,html.bk-lock .wa-float{visibility:hidden}
+  .wa-float{right:12px;right:calc(12px + env(safe-area-inset-right,0px));bottom:12px;bottom:calc(12px + env(safe-area-inset-bottom,0px));width:54px;height:54px;padding:0;justify-content:center}
+  .wa-float svg{width:24px;height:24px}
+  body>footer{padding-bottom:140px}
+  .hdr .wrap{height:64px}
+  .mark b{font-size:19px;letter-spacing:.12em}
+  .mark small{display:none}
+  .hero{padding:104px 16px 96px}
+  .hero-cta .btn{width:100%;max-width:340px}
+}
+@media (max-width:420px){
+  .wrap{width:calc(100% - 32px)}
+  .exp-head{flex-wrap:wrap}
+  .host-ph{width:150px;height:150px}
+  .btn{padding-left:20px;padding-right:20px}
+  .room .foot{flex-wrap:wrap}
+}
+/* Vista horizontal en teléfonos (poca altura) */
+@media (max-height:520px) and (orientation:landscape){
+  .hdr .wrap{height:52px}
+  .hero{min-height:0;padding:76px 24px 40px}
+  .hero .logo-xl{font-size:clamp(34px,7vw,72px)}
+  .intro{padding:70px 0 60px}
+  .cities{padding-bottom:70px}
+  .gal,.host,.loc,.manifesto,.terms{padding-top:70px;padding-bottom:64px}
+  .exp{padding:70px 0 64px}
+  .bk-sticky{display:none}
+  .bk-head{padding:12px 20px 8px}
+  .bk-title{font-size:26px}
+  .bk-disc{display:none}
+  .bk-body{padding:10px 20px}
+  .bk-foot{padding:10px 20px 12px;gap:10px}
+  .bk-sum{flex:1 1 220px}
+  .bk-sum .bk-total{font-size:22px}
+  .bk-go,.bk-back{padding:11px 18px}
+  .bk-day{height:32px}
+  .gal-lb{padding:12px}
+  .gal-lb img{max-height:68vh;max-height:68dvh}
+  .gal-lb .p,.gal-lb .n{top:50%;bottom:auto}
+  body>footer{padding-bottom:100px}
+}
+@media (orientation:landscape) and (min-width:561px) and (max-width:900px){
+  .bk-months{grid-template-columns:1fr 1fr;gap:18px}
+}
+
+/* Modal compacto en pantallas bajas / angostas */
+@media (max-height:700px),(max-width:360px){
+  .bk-title{font-size:26px}
+  .bk-head{padding:14px 18px 10px}
+  .bk-disc{margin:8px 18px 0;padding:8px 10px;font-size:12px;line-height:1.4}
+  .bk-body{padding:12px 18px}
+  .bk-foot{padding:10px 18px 12px;gap:8px}
+  .bk-sum{gap:2px;font-size:12px}
+  .bk-sum .bk-total{font-size:22px}
+  .bk-go,.bk-back{padding:12px 18px}
+  .bk-day{height:34px}
+}
 </style>
 </head>
 <body>
@@ -518,6 +605,8 @@ body>footer .logo-xl{letter-spacing:.1em;font-size:clamp(40px,6vw,76px)}
     </div>
   </div>
 </footer>
+
+<div class="bk-sticky"><button type="button" class="btn dark" data-book data-i18n="book_cta">Solicitar reserva</button></div>
 
 <a class="wa-float" data-wa href="#" aria-label="Escríbele al anfitrión por WhatsApp" id="waFloat">
   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M20 11.5a8 8 0 0 1-11.8 7L4 20l1.5-4.1A8 8 0 1 1 20 11.5z"/><path d="M9.2 8.3c-.3.9.2 2.6 1.6 4s3.1 1.9 4 1.6l.8-1.4-1.8-.9-.8.7c-.9-.4-1.6-1.1-2-2l.7-.8-.9-1.8z" fill="currentColor" stroke="none"/></svg>
